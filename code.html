@@ -70,25 +70,65 @@
 			<div class="col-lg-8 col-12">
 				<pre class="line-numbers">
 						<code class="language-js">
-function displayMessage() {
-	let msg = document.getElementById('message').value;
-	//alert(msg);
+function getValues() {
 
-	Swal.fire(
-		{
-			backdrop: false,
-			title: 'App Name',
-			text: msg
-		}
-	);
+
+	let userMessage = document.getElementById('userMessage').value;
+
+
+	let returnObj = checkPalindrome(userMessage);
+
+	displayMessage(returnObj);
+}
+
+
+function checkPalindrome(userMessage) {
+
+	userMessage = userMessage.toLowerCase();
+
+	// ***** need to revist this, for some reason, numbers are not being taken out
+	// researched https://stackoverflow.com/questions/7297397/differences-between-replace-a-z0-9-gi-and-replace-a-za-z0-9-g
+
+	let regex = /[^a-zA-Z0-9]/g;
+	userMessage = userMessage.replace(regex, "");
+
+
+	let revMessage = [];
+	let returnObj = {};
+
+	for(let index = userMessage.length -1; index >= 0; index = index - 1) 
+	{
+		revMessage += userMessage[index];
+	}
+
+		if (revMessage == userMessage ) {
+
+		returnObj.msg = "Your message " + userMessage + " is a palindrome"
+	}
+		else {
+	returnObj.msg = "Your message " + userMessage + " is not a palindrome"
+	}
+
+	returnObj.reversed = revMessage;
+
+	return returnObj;
+}
+
+
+function displayMessage(returnObj) {
+
+	document.getElementById('alert').innerHTML = returnObj.msg;
+	document.getElementById('alert').classList.remove('d-none');
+
+
 }
 						</code>
 					</pre>
 			</div>
 			<div class="col-lg-4 col-12">
-				<p>This code is structured in one function</p>
-				<h4>displayMessage</h4>
-				<p>Prints out the Message</p>
+				
+				<h4 class="mt-2">Palindrome Message</h4>
+				<p>Prints out a message that determines if the word or message is a palindrome</p>
 			</div>
 		</div>
 	</main>
