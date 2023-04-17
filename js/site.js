@@ -1,6 +1,6 @@
 function getValues() {
 
-
+	// value entered by user
 	let userMessage = document.getElementById('userMessage').value;
 
 	
@@ -14,8 +14,8 @@ function checkPalindrome(userMessage) {
 
 	userMessage = userMessage.toLowerCase();
 
-	let regex = /[^a-z0-9]/gi;
-
+	// ***** need to revist this,  for some reason, numbers are not being taken out
+	let regex = /[^a-zA-Z0-9]/g;
 	userMessage = userMessage.replace(regex, "");
 
 
@@ -29,10 +29,10 @@ function checkPalindrome(userMessage) {
 
 	if (revMessage == userMessage ) {
 
-		returnObj.msg = "Good Job, your message is a palindrome"
+		returnObj.msg = "Your message " + userMessage + " is a palindrome"
 	}
 	else {
-		returnObj.msg = "This message is not a palindrome"
+		returnObj.msg = "Your message " + userMessage + " is not a palindrome"
 	}
 
 	returnObj.reversed = revMessage;
@@ -43,7 +43,6 @@ function checkPalindrome(userMessage) {
 
 function displayMessage(returnObj) {
 
-	document.getElementById('alert').innerHTML = returnObj.msg;
 	document.getElementById('alert').innerHTML = returnObj.msg;
 	document.getElementById('alert').classList.remove('d-none');
 
