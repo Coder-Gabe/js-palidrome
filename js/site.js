@@ -14,10 +14,8 @@ function checkPalindrome(userMessage) {
 
 	userMessage = userMessage.toLowerCase();
 
-	// ***** need to revist this,  for some reason, numbers are not being taken out
-	// researched  https://stackoverflow.com/questions/7297397/differences-between-replace-a-z0-9-gi-and-replace-a-za-z0-9-g
-
-	let regex = /[^a-zA-Z0-9]/g;
+	
+	const regex = /[^a-z0-9]/gi;
 	userMessage = userMessage.replace(regex, "");
 
 
